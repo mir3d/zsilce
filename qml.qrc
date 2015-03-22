@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>MainView.qml</file>
+        <file>SliceView.qml</file>
+        <file>GCodeView.qml</file>
+        <file>Model3DObject.qml</file>
+    </qresource>
+</RCC>
