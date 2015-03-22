@@ -69,7 +69,8 @@ void CParserOBJ::convertObjToStl()
     stl_allocate(stl);
     qDebug() << "after: stl.facet_start" << stl->facet_start;
 
-    // copy from triangleMesh...
+    // TODO: copy from triangleMesh...
+
     m_stl = stl;
 }
 

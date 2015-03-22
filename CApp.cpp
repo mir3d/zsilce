@@ -1,6 +1,6 @@
-#include "CApp.h"
+#include "CApp.hpp"
 #include "CModel.hpp"
-#include "CLayer.h"
+#include "CLayer.hpp"
 
 #include "parsers/CAbstractParser.hpp"
 #include "parsers/CParserOBJ.hpp"
@@ -111,14 +111,14 @@ void CApp::addModel(const QUrl &newModel, int level)
     }
 
 //    model->dumpData();
-    delete parser; //  впарсере
+    delete parser; //
 
     // DUMP
     qDebug() << "M_SCENE entity: ";
     for(auto& layer : m_scene){
         qDebug() << "   Id level: " << layer->id();
         for(auto& model : layer->models()) {
-            qDebug() << "     model: " << model->nameFile();
+            qDebug() << "     model name: " << model->nameFile();
         }
     }
 }

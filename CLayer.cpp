@@ -1,6 +1,6 @@
 #include <QList>
 
-#include "CLayer.h"
+#include "CLayer.hpp"
 #include "CModel.hpp"
 
 

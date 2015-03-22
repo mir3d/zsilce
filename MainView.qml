@@ -10,12 +10,10 @@ Rectangle {
     property alias mouseAreaOpen:  mouseAreaOpen
 
     property alias sliceButton: sliceButton
-    property alias gCodeButton: gCodeButton
+    property alias createLayersButton: createLayersButton
     property alias openButton:  openButton
     property alias closeButton: closeButton
 
-    width: 1024
-    height: 768
     smooth: false
     enabled: true
     antialiasing: false
@@ -54,7 +52,7 @@ Rectangle {
             y: 20
             width: 39
             height: 26
-            text: qsTr("Add")
+            text: qsTr("Models")
             font.family: "Verdana"
             anchors.horizontalCenter: parent.horizontalCenter
             horizontalAlignment: Text.AlignHCenter
@@ -69,6 +67,7 @@ Rectangle {
             hoverEnabled: true
             clip: false
             anchors.fill: parent
+            propagateComposedEvents: true
             cursorShape: Qt.PointingHandCursor
             onEntered: openButton.border.width   = 2
             onExited: openButton.border.width    = 1
@@ -124,7 +123,7 @@ Rectangle {
     }
 
     Rectangle {
-        id: gCodeButton
+        id: createLayersButton
         y: 86
         width: 65
         height: 25
@@ -136,12 +135,12 @@ Rectangle {
         border.color: "#cce9fc"
 
         Text {
-            id: textGCode
+            id: textCreteLayers
             x: 8
             y: 20
             width: 48
             height: 26
-            text: qsTr("G-code")
+            text: qsTr("Layers")
             font.family: "Verdana"
             horizontalAlignment: Text.AlignHCenter
             anchors.horizontalCenter: parent.horizontalCenter
@@ -157,8 +156,8 @@ Rectangle {
             clip: false
             anchors.fill: parent
             cursorShape: Qt.PointingHandCursor
-            onEntered: gCodeButton.border.width = 2
-            onExited: gCodeButton.border.width  = 1
+            onEntered: createLayersButton.border.width = 2
+            onExited: createLayersButton.border.width  = 1
         }
     }
 

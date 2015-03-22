@@ -1,5 +1,5 @@
-#ifndef CMODEL_H
-#define CMODEL_H
+#ifndef CMODEL_HPP
+#define CMODEL_HPP
 
 #include <QObject>
 #include <QVector3DArray>
@@ -46,4 +46,4 @@ private:
 
 
 
-#endif // CMODEL_H
+#endif // CMODEL_HPP

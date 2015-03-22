@@ -1,5 +1,5 @@
-#ifndef CLAYER_H
-#define CLAYER_H
+#ifndef CLAYER_HPP
+#define CLAYER_HPP
 
 #include <QObject>
 #include <QList>
@@ -34,4 +34,4 @@ private:
 
 };
 
-#endif // CLAYER_H
+#endif // CLAYER_HPP

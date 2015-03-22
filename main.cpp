@@ -2,7 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-#include "CApp.h"
+#include "CApp.hpp"
 #include "CUtils.hpp"
 
 int main(int argc, char *argv[])

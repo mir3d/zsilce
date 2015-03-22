@@ -24,7 +24,6 @@ include(deployment.pri)
 
 HEADERS += \
     CModel.hpp \
-    CApp.h \
     stl/stl.hpp \
     CUtils.h \
     CUtils.hpp \
@@ -32,7 +31,8 @@ HEADERS += \
     parsers/CParserSTL.hpp \
     parsers/CParserOBJ.hpp \
     common/CFace.h \
-    CLayer.h
+    CApp.hpp \
+    CLayer.hpp
 
 #INCLUDEPATH += c:\Qt\Tools\mingw491_32
 #INCLUDEPATH += c:\Qt\Tools\mingw491_32\i686-w64-mingw32

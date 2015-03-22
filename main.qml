@@ -10,7 +10,7 @@ import Qt3D.Shapes 2.0
 Window {
 
     visible: true
-    width: 1024
+    width: 1280
     height: 800
     title: "Z-Slice"
 
@@ -23,7 +23,6 @@ Window {
         property real dX: 0
         property real dY: 0
         property int idd:0
-
 
         onModelFileChanged: {
             app.addModel(mainDlg.modelFile, 0) // assimpSupportedFormats()
@@ -40,20 +39,31 @@ Window {
             plateMouseArea.visible = true
         }
 
-        mouseAreaSlice.onClicked: !sliceDlg.visible ? actionSlice() : dummy()
-        mouseAreaGCode.onClicked: !gcodeDlg.visible ? actionGCode() : dummy()
-        mouseAreaOpen.onClicked:  openModelDialog.open()
+        mouseAreaSlice.onClicked: !sliceDlg.visible && !layersDlg.visible ? actionSlice() : dummy()
+        mouseAreaGCode.onClicked: !layersDlg.visible && !sliceDlg.visible ? actionCreateLayers() : dummy()
+        mouseAreaOpen.onClicked:  !sliceDlg.visible && !layersDlg.visible ? openModelDialog.open() : undefined
         mouseAreaClose.onClicked: Qt.quit()
 
         // action
         function actionSlice() {
             console.log("actionSlice()")
-            sliceButton.opacity = 0.3
+            sliceButton.opacity = 1
+            openButton.opacity = 0.3
+            createLayersButton.opacity = 0.3
+            closeButton.opacity = 0.3
+
             sliceButton.width = 90 // default 65
             sliceDlg.visible = true
         }
-        function actionGCode() {
+        function actionCreateLayers() {
             console.log("actionGCode()")
+            createLayersButton.opacity = 1
+            sliceButton.opacity = 0.3
+            openButton.opacity = 0.3
+            closeButton.opacity = 0.3
+
+            createLayersButton.width = 90 // default 65
+            layersDlg.visible = true
             //app.gcode()
         }
         function dummy() { console.log("dummy") }
@@ -153,7 +163,11 @@ Window {
         mouseAreaCloseButton.onExited: closeButton.border.width = 1
 
         mouseAreaCloseButton.onClicked: {
-            mainDlg.sliceButton.opacity = 1
+
+            mainDlg.createLayersButton.opacity = 1
+            mainDlg.openButton.opacity = 1
+            mainDlg.closeButton.opacity = 1
+
             mainDlg.sliceButton.width = 65
             sliceDlg.visible = false
         }
@@ -166,9 +180,21 @@ Window {
         }
     }
 
-    GCodeView {
-        id: gcodeDlg
+    LayersView {
+        id: layersDlg
         visible: false
+        mouseAreaCloseButton.cursorShape: Qt.PointingHandCursor
+        mouseAreaCloseButton.onEntered: closeButton.border.width = 2
+        mouseAreaCloseButton.onExited: closeButton.border.width = 1
+
+        mouseAreaCloseButton.onClicked: {
+            mainDlg.sliceButton.opacity = 1
+            mainDlg.openButton.opacity = 1
+            mainDlg.closeButton.opacity = 1
+
+            mainDlg.createLayersButton.width = 65
+            layersDlg.visible = false
+        }
     }
 
     FileDialog {

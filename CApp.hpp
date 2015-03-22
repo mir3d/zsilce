@@ -1,5 +1,5 @@
-#ifndef CAPP_H
-#define CAPP_H
+#ifndef CAPP_HPP
+#define CAPP_HPP
 
 #include <QObject>
 #include <QLibrary>
@@ -38,4 +38,4 @@ private:
 };
 
 #include <QThread>
-#endif // CAPP_H
+#endif // CAPP_HPP
