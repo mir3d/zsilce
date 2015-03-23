@@ -23,12 +23,12 @@ Rectangle {
     GroupBox {
         x: 25
         y: 15
-        flat: true
+        //flat: true
         title: "Operation:"
         Column {
             spacing: 10
             Row {
-                spacing: 15
+                spacing: 10
                 // 1 line
                 CheckBox {
                     id: activateLayersCount
@@ -36,13 +36,23 @@ Rectangle {
                     text: "layers number"
                 }
                 TextField {
+                    id: layerNumberTextField
                     anchors.verticalCenter: parent.verticalCenter
                     placeholderText: "enter count"
                 }
                 Button {
                     anchors.verticalCenter: parent.verticalCenter
+                    height: layerNumberTextField.height
                     text: "?"
                     tooltip: "Количество слоёв для автоматического создания"
+                    style: ButtonStyle {
+                        background:  Rectangle {
+                            implicitWidth: 35
+                            border.width: control.activeFocus ? 2 : 1
+                            border.color: "#ddd"
+                            radius: 4
+                        }
+                    }
                 }
             }
             Row {
