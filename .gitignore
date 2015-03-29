@@ -5,6 +5,7 @@ doc/qt3d
 *.user
 *.user.*
 *.pro.user*
+*.pro.user
 
 tmp
 Makefile*

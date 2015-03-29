@@ -44,7 +44,7 @@ Window {
         mouseAreaOpen.onClicked:  !sliceDlg.visible && !layersDlg.visible ? openModelDialog.open() : undefined
         mouseAreaClose.onClicked: Qt.quit()
 
-        // action
+        // begin actions //////////////////////////
         function actionSlice() {
             console.log("actionSlice()")
             sliceButton.opacity = 1
@@ -67,6 +67,8 @@ Window {
             //app.gcode()
         }
         function dummy() { console.log("dummy") }
+
+        // end actions //////////////////////////
 
         Viewport {
             id: viewPort
@@ -108,17 +110,9 @@ Window {
                 upVector: Qt.vector3d(0,0,1)
             }
 
-            Cube { // база
-                id: basePlate
-                position: Qt.vector3d(250,250,0)
-                transform: [
-                    Scale3D { scale: Qt.vector3d(500, 500, 1) },
-                    Translation3D { translate: Qt.vector3d(-250,-250, -1)}
-                ]
-
-                effect: Effect { color: "#aaca00" }
+            Plate {
+                id: plate
             }
-
 //            Item {
 //                id: mouseHelper
 //                visible: true
