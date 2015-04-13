@@ -27,7 +27,7 @@ public:
 
     Q_INVOKABLE void slice();
     Q_INVOKABLE void gcode();
-    Q_INVOKABLE void addModel(const QUrl &newModel, int level, qreal newY0);
+    Q_INVOKABLE void addModel(const QUrl &newModel, int level);
 
 private:
     QLibrary m_lib;

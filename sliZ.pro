@@ -13,7 +13,11 @@ SOURCES += main.cpp \
     parsers/CParserSTL.cpp \
     parsers/CParserOBJ.cpp \
     common/CFace.cpp \
-    CLayer.cpp
+    CLayer.cpp \
+    stl/connect.cpp \
+    stl/normals.cpp \
+    stl/shared.cpp \
+    stl/util.cpp
 
 RESOURCES += qml.qrc
 

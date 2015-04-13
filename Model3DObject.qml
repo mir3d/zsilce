@@ -16,7 +16,8 @@ Item3D {
     position: location
     mesh: Mesh { source: path }
     effect: Effect { color: colorObject }
-//        onClicked: console.log("Has model clicked")
+
+    //        onClicked: console.log("Has model clicked")
 //        onHoverEnter: opacity = 0.5
 //        onHoverLeave: opacity = 1
 //        onPressed: console.log("pressed model")

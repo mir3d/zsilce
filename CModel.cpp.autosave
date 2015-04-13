@@ -57,7 +57,8 @@ void CModel::repair()
 
 void CModel::alignToBottomLayer()
 {
-    stl_translate(m_stl, 0, 0, num);
+    
+    stl_translate(m_stl, 0, 0, );
     qDebug() << "model has down m_stl->stats.min.z" << m_stl->stats.min.z;
 }
 

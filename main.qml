@@ -22,21 +22,22 @@ Window {
         property url modelFile
         property real dX: 0
         property real dY: 0
-        property int idd:0
+        property int idd: 0
+        property variant objects
 
         onModelFileChanged: {
             app.addModel(mainDlg.modelFile, 0) // assimpSupportedFormats()
             //id = app.lastModel;
-            //mainDlg.idd += 1;
             var model3D = Qt.createComponent("Model3DObject.qml")
 
             // verify position object here
-            plateMouseArea.tmpObject = model3D.createObject(viewPort, { /*"id": "_" + mainDlg.idd,*/
+            plateMouseArea.tmpObject = model3D.createObject(viewPort, { "id": "_" + idd,
                                              "path": mainDlg.modelFile,
                                              "colorObject": "red",
-                                             "location": Qt.vector3d(0,0,0)})
+                                             "location": Qt.vector3d(0,0,0)}) // app.model().y0()
             plateMouseArea.hoverEnabled = true
             plateMouseArea.visible = true
+            idd += 1;
         }
 
         mouseAreaSlice.onClicked: !sliceDlg.visible && !layersDlg.visible ? actionSlice() : dummy()
@@ -66,10 +67,9 @@ Window {
             layersDlg.visible = true
             //app.gcode()
         }
-        function dummy() { console.log("dummy") }
+        function dummy() { }
 
         // end actions //////////////////////////
-
         Viewport {
             id: viewPort
             anchors.fill: parent
@@ -94,20 +94,30 @@ Window {
             //        lightModel: LightModel {
             //            model: LightModel.TwoSided
             //        }
+            Item {
+                id: cameraHelper
+                property var x0
+                property var y0
+            }
+
             camera: Camera {
                 id: viewCamera
                 property vector3d frontCamera: Qt.vector3d(0, 500, 300)
                 property vector3d leftCamera:  Qt.vector3d(-500, 0, 300)
                 property vector3d rightCamera: Qt.vector3d(500, 0, 300)
-                property vector3d topCamera:   Qt.vector3d(0, 0, 500)
+                property vector3d topCamera:   Qt.vector3d(0, 0, -500)
                 property vector3d freeCamera:  Qt.vector3d(500, 300, 300)
+                //property vector3d movedByMouseCamera:  Qt.vector3d( camHelp.x * 500, camHelp.y, 300)
 
+                projectionType: "Perspective" //"Orthographic"
                 eye: freeCamera
                 nearPlane:1.0
                 farPlane: 2000
                 center: Qt.vector3d(0,0,0)
-                fieldOfView: 45
+                fieldOfView: 25
                 upVector: Qt.vector3d(0,0,1)
+
+                //onUpVectorChanged:
             }
 
             Plate {
@@ -130,12 +140,13 @@ Window {
                 anchors.fill: parent
                 hoverEnabled: false
                 visible: false
-
-                property var tmpObject
+                property Item3D tmpObject
 
                 onPositionChanged: {
 
-
+                    tmpObject.x = mouse.x
+                    tmpObject.y = mouse.y
+                    // mouse.x / mouse.y
 //                    Допустим, имеется некое пространство сцены, в которое объекты приводятся матрицей MODELVIEW. В дальнейшем объекты преобразовываются в экранное пространство матрицей Projection. Даны координаты курсора в окне с шириной/высотой w/h пикселей: (x, y), которые отсчитываются от верхнего левого угла. Найти координаты соответствующей точки в пространстве сцены.
 //                    Решение.
 //                    Переведём координаты курсора в экранное пространство. Оно ограничено координатами от -1 до 1 по всем 3 осям, с точкой (0, 0, 0) в центре экрана, ось x идёт слева направо, ось y снизу вверх. Отсюда формулы: xS = (2*x - w)/w, yS = (h - 2*y)/h, zS = 0.
@@ -147,6 +158,7 @@ Window {
                 }
             }
         }
+
     }
 
     SliceView {

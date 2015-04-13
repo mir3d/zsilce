@@ -121,6 +121,8 @@ void CApp::addModel(const QUrl &newModel, int level)
 
     QMap<int, CLayer*>::iterator layer = m_scene.find(level);
     layer.value()->alignToBottom(model); // ищем по адресу объект модели
+    
+    
 
     //model->dumpData();
     delete parser; //

@@ -15,6 +15,7 @@ public:
     explicit CModel(const QUrl &newPathModel, QObject *parent = 0);
     ~CModel();
 
+    // set/get
     inline const QString &modelPath() { return m_modelPath; }
     inline const QString &nameFile() { return m_nameFile; }
     inline stl_file *stl() { return m_stl; }
@@ -27,10 +28,19 @@ public:
     inline bool isSTL() {return m_STL;}
 
     void setStl(stl_file* newStl);
+
+    void setLayerId(int layerId);
+    inline int layerId() const { return m_layerId; }
+
+    //service
+    void alignToBottomLayer(); // прижимает объект к НИЖНЕЙ границе слоя
+    void alignToTopLayer();    // прижимает объект к ВЕРХНЕЙ границе слоя
+    void alifnToCenterLayer(); // поместить объект к ЦЕНТРУ слоя
+
     void dumpData();            // not release
     void repair();              // not release
 
-
+    QVector3DArray boundBox3d(); // not release
 
 private:
     QString m_modelPath;
@@ -38,7 +48,9 @@ private:
 
     QByteArray m_hash;
     stl_file *m_stl;
+    int m_layerId;
 
+    QVector3DArray m_bound;
 
     bool m_STL;
     bool m_OBJ;

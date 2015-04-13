@@ -24,12 +24,12 @@ void CLayer::addModels(CModel *model)
 }
 qreal CLayer::maxHeight() const
 {
-    return m_MaxHeight;
+    return m_height;
 }
 
 void CLayer::setMaxHeight(const qreal &maxHeight)
 {
-    m_MaxHeight = maxHeight;
+    m_height = maxHeight;
 }
 
 qreal CLayer::findMaxHieght()
@@ -50,6 +50,16 @@ int CLayer::id() const
 void CLayer::setId(int id)
 {
     m_id = id;
+}
+
+void CLayer::setHeight(qreal newHeight)
+{
+    m_height = newHeight;
+}
+
+void CLayer::setY0(qreal newY0)
+{
+    m_y0 = newY0;
 }
 
 

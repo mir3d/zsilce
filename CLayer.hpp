@@ -20,18 +20,24 @@ public:
     qreal maxHeight() const;
     void setMaxHeight(const qreal &maxHeight);
 
-    //logic
-    qreal findMaxHieght();
-
     int id() const;
     void setId(int id);
+
+    void setHeight(qreal newHeight);
+    inline qreal height() const { return m_height; }
+
+    void setY0(qreal newY0);
+    inline qreal y0() const { return m_y0; }
+
+    //logic
+    qreal findMaxHieght();
 
 private:
     QList<CModel *> m_models;
 
-    qreal m_MaxHeight;
-    int m_id;
-
+    qreal m_height;             // высота слоя
+    qreal m_y0;                 // нижня граница слоя
+    int m_id;                   // номер слоя
 };
 
 #endif // CLAYER_HPP
