@@ -4,9 +4,10 @@
 #include "CModel.hpp"
 
 
-CLayer::CLayer(QObject *parent) : QObject(parent)
+CLayer::CLayer(QObject *parent, int id = 0) : QObject(parent)
 {
     m_models.clear();
+    m_id = id;
 }
 
 CLayer::~CLayer()
@@ -22,6 +23,7 @@ void CLayer::addModels(CModel *model)
 {
     m_models.append(model);
 }
+
 qreal CLayer::maxHeight() const
 {
     return m_height;
@@ -60,6 +62,12 @@ void CLayer::setHeight(qreal newHeight)
 void CLayer::setY0(qreal newY0)
 {
     m_y0 = newY0;
+}
+
+void CLayer::alignToBottomLayer(CModel *model)
+{
+    stl_translate(m_stl, 0, 0, );
+    qDebug() << "model has down m_stl->stats.min.z" << m_stl->stats.min.z;
 }
 
 

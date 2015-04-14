@@ -97,17 +97,13 @@ void CApp::addModel(const QUrl &newModel, int level)
     // то необходимо создать объект Layer этого слоя
     // иначе добавить модель сразу в слой
     // выполнить проверку высоты объекта и высоты слоя.
-    // Слой автоматом создавать в высоту объекта!
+    // Слой автоматом создавать в высоту самого большого объекта!
 
     if(!m_scene.contains(level)) { // не содержит слой в который помещается модель
-        CLayer *layer = new CLayer();
-        layer->setId(level);
+        CLayer *layer = new CLayer(level);
 
         if(level == 0)  // для нулевого уровня y0 всегда рано 0
             layer->setY0(0);
-        else ;
-//        pLayer->setY0();            // !! узнать из qml интерфейса
-
 
         m_scene.insert(level, layer);
         model->setLayerId(layer->id()); // модель должна знать в каком она уровне
@@ -121,6 +117,7 @@ void CApp::addModel(const QUrl &newModel, int level)
 
     QMap<int, CLayer*>::iterator layer = m_scene.find(level);
     layer.value()->alignToBottom(model); // ищем по адресу объект модели
+
 
     //model->dumpData();
     delete parser; //

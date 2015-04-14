@@ -17,7 +17,6 @@ class Cmodel;
 class CApp : public QObject
 {
     Q_OBJECT
-    //Q_PROPERTY(QList<CModel*> scene READ scene WRITE setScene NOTIFY sceneChanged)
 
 public:
     explicit CApp(QObject *parent = 0);
@@ -27,7 +26,7 @@ public:
 
     Q_INVOKABLE void slice();
     Q_INVOKABLE void gcode();
-    Q_INVOKABLE void addModel(const QUrl &newModel, int level, qreal newY0);
+    Q_INVOKABLE void addModel(const QUrl &newModel, int level);
 
 private:
     QLibrary m_lib;

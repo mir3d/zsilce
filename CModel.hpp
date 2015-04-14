@@ -33,10 +33,6 @@ public:
     inline int layerId() const { return m_layerId; }
 
     //service
-    void alignToBottomLayer(); // прижимает объект к НИЖНЕЙ границе слоя
-    void alignToTopLayer();    // прижимает объект к ВЕРХНЕЙ границе слоя
-    void alifnToCenterLayer(); // поместить объект к ЦЕНТРУ слоя
-
     void dumpData();            // not release
     void repair();              // not release
 

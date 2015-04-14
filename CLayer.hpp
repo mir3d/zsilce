@@ -29,6 +29,11 @@ public:
     void setY0(qreal newY0);
     inline qreal y0() const { return m_y0; }
 
+    //service
+    void alignToBottomLayer(CModel *model); // прижимает объект к НИЖНЕЙ границе слоя
+    void alignToTopLayer();    // прижимает объект к ВЕРХНЕЙ границе слоя
+    void alifnToCenterLayer(); // поместить объект к ЦЕНТРУ слоя
+
     //logic
     qreal findMaxHieght();
 

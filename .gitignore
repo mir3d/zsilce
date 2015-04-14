@@ -6,6 +6,8 @@ doc/qt3d
 *.user.*
 *.pro.user*
 *.pro.user
+*.autosave
+*.cpp.autosave
 
 tmp
 Makefile*

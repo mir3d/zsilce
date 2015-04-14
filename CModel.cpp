@@ -55,22 +55,6 @@ void CModel::repair()
     qDebug() << "CModel::repair() - not implemented!";
 }
 
-void CModel::alignToBottomLayer()
-{
-    stl_translate(m_stl, 0, 0, num);
-    qDebug() << "model has down m_stl->stats.min.z" << m_stl->stats.min.z;
-}
-
-void CModel::alignToTopLayer()
-{
-
-}
-
-void CModel::alifnToCenterLayer()
-{
-
-}
-
 QVector3DArray CModel::boundBox3d()
 {
     if(!m_bound.isEmpty()) return m_bound;
