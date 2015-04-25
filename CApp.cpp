@@ -100,23 +100,25 @@ void CApp::addModel(const QUrl &newModel, int level)
     // Слой автоматом создавать в высоту самого большого объекта!
 
     if(!m_scene.contains(level)) { // не содержит слой в который помещается модель
-        CLayer *layer = new CLayer(level);
 
-        if(level == 0)  // для нулевого уровня y0 всегда рано 0
-            layer->setY0(0);
+//        CLayer *layer = new CLayer(level);
 
-        m_scene.insert(level, layer);
-        model->setLayerId(layer->id()); // модель должна знать в каком она уровне
-        layer->addModels(model);
+//        if(level == 0)  // для нулевого уровня y0 всегда рано 0
+//            layer->setY0(0);
+
+//        m_scene.insert(level, layer);
+//        model->setLayerId(layer->id()); // модель должна знать в каком она уровне
+//        layer->addModels(model);
     } else { // если в уровне присутствуют уже объекты, то дабавить объект
-             // без создания нового уровня
-        QMap<int, CLayer*>::iterator layer = m_scene.find(level);
-        model->setLayerId(layer.value()->id()); // модель знает в каком она уровне
-        layer.value()->addModels(model);
+//             // без создания нового уровня
+//        QMap<int, CLayer*>::iterator layer = m_scene.find(level);
+//        model->setLayerId(layer.value()->id()); // модель знает в каком она уровне
+//        layer.value()->addModels(model);
     }
 
     QMap<int, CLayer*>::iterator layer = m_scene.find(level);
-    layer.value()->alignToBottom(model); // ищем по адресу объект модели
+    layer.value()->alignModel(model, Qt::AlignBottom); // ищем по адресу объект модели
+
 
 
     //model->dumpData();
@@ -131,3 +133,4 @@ void CApp::addModel(const QUrl &newModel, int level)
         }
     }
 }
+

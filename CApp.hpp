@@ -28,6 +28,9 @@ public:
     Q_INVOKABLE void gcode();
     Q_INVOKABLE void addModel(const QUrl &newModel, int level);
 
+    //service
+
+
 private:
     QLibrary m_lib;
     QMap<int, CLayer* > m_scene;

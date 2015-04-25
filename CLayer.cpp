@@ -4,7 +4,7 @@
 #include "CModel.hpp"
 
 
-CLayer::CLayer(QObject *parent, int id = 0) : QObject(parent)
+CLayer::CLayer(QObject *parent, int id) : QObject(parent)
 {
     m_models.clear();
     m_id = id;
@@ -44,6 +44,7 @@ qreal CLayer::findMaxHieght()
 
     return 0;
 }
+
 int CLayer::id() const
 {
     return m_id;
@@ -61,15 +62,28 @@ void CLayer::setHeight(qreal newHeight)
 
 void CLayer::setY0(qreal newY0)
 {
+    if(m_y0 == newY0) return
     m_y0 = newY0;
+    emit y0Changed(m_y0);
 }
 
-void CLayer::alignToBottomLayer(CModel *model)
+void CLayer::alignModel(CModel *model, Qt::AlignmentFlag align)
 {
-    stl_translate(m_stl, 0, 0, );
-    qDebug() << "model has down m_stl->stats.min.z" << m_stl->stats.min.z;
+    switch (align) {
+    case Qt::AlignBottom :
+        //stl_translate(model->stl(), 0, 0, 0);
+        break;
+
+    case Qt::AlignTop : // прижимает объект к ВЕРХНЕЙ границе слоя
+
+        break;
+
+    case Qt::AlignCenter : // поместить объект к ЦЕНТРУ слоя
+
+        break;
+    default:
+        break;
+    }
+    stl_translate(model->stl(), 0, 0, 0);
+    qDebug() << "model has down m_stl->stats.min.z" << model->stl()->stats.min.z;
 }
-
-
-
-

@@ -16,6 +16,7 @@ Window {
 
     //visibility: Window.FullScreen
 
+
     MainView {
         id: mainDlg
         anchors.fill: parent
@@ -25,16 +26,20 @@ Window {
         property int idd: 0
         property variant objects
 
+//        property Item currentBlock:
+
         onModelFileChanged: {
-            app.addModel(mainDlg.modelFile, 0) // assimpSupportedFormats()
+//            app.addModel(mainDlg.modelFile, 0) // assimpSupportedFormats()
             //id = app.lastModel;
             var model3D = Qt.createComponent("Model3DObject.qml")
 
             // verify position object here
-            plateMouseArea.tmpObject = model3D.createObject(viewPort, { "id": "_" + idd,
-                                             "path": mainDlg.modelFile,
-                                             "colorObject": "red",
-                                             "location": Qt.vector3d(0,0,0)}) // app.model().y0()
+            plateMouseArea.tmpObject = model3D.createObject(viewPort,
+                    { "id": "_" + idd,
+                      "idModel": currentBlock.id,
+                      "path": mainDlg.modelFile,
+                      "colorObject": "red",
+                      "location": Qt.vector3d(0,0,0)}  ) // app.model().y0()
             plateMouseArea.hoverEnabled = true
             plateMouseArea.visible = true
             idd += 1;

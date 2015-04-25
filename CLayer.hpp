@@ -9,8 +9,10 @@ class CModel;
 class CLayer : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(qreal y0 READ y0 WRITE setY0 NOTIFY y0Changed)
+
 public:
-    CLayer(QObject *parent = 0);
+    CLayer(QObject *parent = 0, int id = 0);
     ~CLayer();
 
     //get/set
@@ -22,6 +24,21 @@ public:
 
     int id() const;
     void setId(int id);
+
+    void setHeight(qreal newHeight);
+    inline qreal height() const { return m_height; }
+
+    void setY0(qreal newY0);
+    inline qreal y0() const { return m_y0; }
+
+    //service
+    void alignModel(CModel *model, Qt::AlignmentFlag align); // прижимает объект к НИЖНЕЙ границе слоя
+
+    //logic
+    qreal findMaxHieght();
+
+signals:
+    void y0Changed(qreal arg);
 
     void setHeight(qreal newHeight);
     inline qreal height() const { return m_height; }
