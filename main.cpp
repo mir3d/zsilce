@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     CApp *app = new CApp();
     app->init();
 
-    CUtils *utils = new CUtils();
+    CUtils *utils = new CUtils(&appl);
 
     QQmlApplicationEngine engine;
     QQmlContext *pContext = engine.rootContext();

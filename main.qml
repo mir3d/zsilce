@@ -29,7 +29,7 @@ Window {
 //        property Item currentBlock:
 
         onModelFileChanged: {
-//            app.addModel(mainDlg.modelFile, 0) // assimpSupportedFormats()
+            app.addModel(mainDlg.modelFile, 0) // assimpSupportedFormats()
             //id = app.lastModel;
             var model3D = Qt.createComponent("Model3DObject.qml")
 
@@ -42,7 +42,7 @@ Window {
                       "location": Qt.vector3d(0,0,0)}  ) // app.model().y0()
             plateMouseArea.hoverEnabled = true
             plateMouseArea.visible = true
-            idd += 1;
+            idd += 1
         }
 
         mouseAreaSlice.onClicked: !sliceDlg.visible && !layersDlg.visible ? actionSlice() : dummy()
@@ -148,18 +148,17 @@ Window {
                 property Item3D tmpObject
 
                 onPositionChanged: {
+//                    tmpObject.x = mouse.x  // -- x' plate
+//                    tmpObject.y = mouse.y  // -- y' plate
 
-                    tmpObject.x = mouse.x
-                    tmpObject.y = mouse.y
-                    // mouse.x / mouse.y
-//                    Допустим, имеется некое пространство сцены, в которое объекты приводятся матрицей MODELVIEW. В дальнейшем объекты преобразовываются в экранное пространство матрицей Projection. Даны координаты курсора в окне с шириной/высотой w/h пикселей: (x, y), которые отсчитываются от верхнего левого угла. Найти координаты соответствующей точки в пространстве сцены.
-//                    Решение.
-//                    Переведём координаты курсора в экранное пространство. Оно ограничено координатами от -1 до 1 по всем 3 осям, с точкой (0, 0, 0) в центре экрана, ось x идёт слева направо, ось y снизу вверх. Отсюда формулы: xS = (2*x - w)/w, yS = (h - 2*y)/h, zS = 0.
-//                    Следующий шаг - перевод из экранных координат в пространство сцены. Для этого надо либо вычислить матрицу проекции (её размерность - 4*4) по данным в MSDN формулам, либо просто прочитать её с помощью glGetDoublev. Затем найти обратную матрицу методом Гаусса. Дополнить координаты xS, yS, zS компонентой w, чтобы получить однородные координаты (задать w = 1). Умножить полученный вектор длиной 4 на обратную матрицу, получим новый вектор длиной 4: (xM, yM, zM, wM). Поделим координаты xM, yM, zM на компонент wM и получим координаты мышиного курсора в пространстве сцены.
+                    utils.glUnProject(mouse.x, mouse.y)
+                    tmpObject.x = utils.x
+                    tmpObject.y = utils.y
                 }
                 onClicked: {
                     hoverEnabled = false
                     visible = false
+//                    plateMouseArea.tmpObject.colorObject = "gray"
                 }
             }
         }

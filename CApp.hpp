@@ -33,7 +33,7 @@ public:
 
 private:
     QLibrary m_lib;
-    QMap<int, CLayer* > m_scene;
+    QMap<int, CLayer* > m_plate;
 
     libSlice m_fSlice;
     libGCode m_fGCode;
