@@ -2,7 +2,9 @@
 #define CMODEL_HPP
 
 #include <QObject>
-#include <QVector3DArray>
+//#include <QVector3DArray>
+#include <QList>
+#include <QVector3D>
 #include <QUrl>
 #include <QByteArray>
 
@@ -36,7 +38,8 @@ public:
     void dumpData();            // not release
     void repair();              // not release
 
-    QVector3DArray boundBox3d(); // not release
+    //QVector3DArray boundBox3d(); // not release
+    QList<QVector3D> boundBox3d(); // not release
 
 private:
     QString m_modelPath;
@@ -46,8 +49,8 @@ private:
     stl_file *m_stl;
     int m_layerId;
 
-    QVector3DArray m_bound;
-
+    //QVector3DArray m_bound;
+    QList<QVector3D> m_bound;
     bool m_STL;
     bool m_OBJ;
 };
@@ -55,3 +58,4 @@ private:
 
 
 #endif // CMODEL_HPP
+

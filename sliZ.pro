@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick 3dquick
+QT += qml quick 3dquick 3dcore 3drenderer
 CONFIG += c++14
 
 SOURCES += main.cpp \
@@ -40,10 +40,7 @@ HEADERS += \
 
 #INCLUDEPATH += c:\Qt\Tools\mingw491_32
 #INCLUDEPATH += c:\Qt\Tools\mingw491_32\i686-w64-mingw32
-INCLUDEPATH += c:\Qt\Tools\mingw491_32\i686-w64-mingw32\include
+INCLUDEPATH += c:\Qt2\Tools\mingw491_32\i686-w64-mingw32\include
 #INCLUDEPATH += c:\Qt\Tools\mingw491_32\i686-w64-mingw32\include\c++
 #INCLUDEPATH += c:\Qt\Tools\mingw491_32\i686-w64-mingw32\include\c++\i686-w64-mingw32\
-INCLUDEPATH += c:\Qt\Tools\mingw491_32\i686-w64-mingw32\include\c++\i686-w64-mingw32\bits\
-
-
-DISTFILES +=
+INCLUDEPATH += c:\Qt2\Tools\mingw491_32\i686-w64-mingw32\include\c++\i686-w64-mingw32\bits\

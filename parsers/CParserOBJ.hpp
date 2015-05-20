@@ -1,7 +1,8 @@
 #ifndef CPARESEROBJ_H
 #define CPARESEROBJ_H
 
-#include <QVector3DArray>
+//#include <QVector3DArray>
+#include <QVector3D>
 
 #include "CAbstractParser.hpp"
 
@@ -17,7 +18,8 @@ public:
     bool parse(QString &pathModel) Q_DECL_OVERRIDE;
     void convertObjToStl();
 
-    QVector3DArray vs;
+//    QVector3DArray vs;
+    QList<QVector3D> vs;
     QList<quint32> fs;
 };
 

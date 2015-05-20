@@ -55,15 +55,20 @@ void CModel::repair()
     qDebug() << "CModel::repair() - not implemented!";
 }
 
-QVector3DArray CModel::boundBox3d()
+//QVector3DArray CModel::boundBox3d()
+QList<QVector3D> CModel::boundBox3d()
 {
     if(!m_bound.isEmpty()) return m_bound;
 
     //calc bound  pmin & pmax
-    QVector3DArray min;
-    QVector3DArray max;
-    min.append(m_stl->stats.min.x, m_stl->stats.min.y, m_stl->stats.min.z);
-    max.append(m_stl->stats.max.x, m_stl->stats.max.y, m_stl->stats.max.z);
+//    QVector3DArray min;
+//    QVector3DArray max;
+
+    QList<QVector3D> min;
+    QList<QVector3D> max;
+
+//    min.append(m_stl->stats.min.x, m_stl->stats.min.y, m_stl->stats.min.z);
+//    max.append(m_stl->stats.max.x, m_stl->stats.max.y, m_stl->stats.max.z);
 
     return min;
 }
